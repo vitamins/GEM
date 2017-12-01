@@ -37,9 +37,12 @@ class LaplacianEigenmaps(StaticGraphEmbedding):
         hyper_params.update(kwargs)
         for key in hyper_params.keys():
             self.__setattr__('_%s' % key, hyper_params[key])
+        """
         for dictionary in hyper_dict:
             for key in dictionary:
                 self.__setattr__('_%s' % key, dictionary[key])
+        """
+        self._d = hyper_dict[0]
 
     def get_method_name(self):
         return self._method_name
@@ -63,7 +66,7 @@ class LaplacianEigenmaps(StaticGraphEmbedding):
 
         p_d_p_t = np.dot(v, np.dot(np.diag(w), v.T))
         eig_err = np.linalg.norm(p_d_p_t - L_sym)
-        print 'Laplacian matrix recon. error (low rank): %f' % eig_err
+        print('Laplacian matrix recon. error (low rank): %f' % eig_err)
         return self._X, (t2 - t1)
 
     def get_embedding(self):

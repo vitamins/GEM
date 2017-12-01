@@ -45,9 +45,18 @@ class node2vec(StaticGraphEmbedding):
         hyper_params.update(kwargs)
         for key in hyper_params.keys():
             self.__setattr__('_%s' % key, hyper_params[key])
+        """
         for dictionary in hyper_dict:
             for key in dictionary:
                 self.__setattr__('_%s' % key, dictionary[key])
+        """
+        self._d = hyper_dict[0]
+        self._max_iter = hyper_dict[1]
+        self._walk_len = hyper_dict[2]
+        self._num_walks = hyper_dict[3]
+        self._con_size = hyper_dict[4]
+        self._ret_p = hyper_dict[5]
+        self._inout_p = hyper_dict[6]
 
     def get_method_name(self):
         return self._method_name

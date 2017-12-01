@@ -38,9 +38,13 @@ class HOPE(StaticGraphEmbedding):
         hyper_params.update(kwargs)
         for key in hyper_params.keys():
             self.__setattr__('_%s' % key, hyper_params[key])
+        """
         for dictionary in hyper_dict:
             for key in dictionary:
                 self.__setattr__('_%s' % key, dictionary[key])
+        """
+        self._d = hyper_dict[0]
+        self._beta = hyper_dict[1]
 
     def get_method_name(self):
         return self._method_name
